@@ -306,7 +306,7 @@ Example response:
         "creation_date": "2022-11-13 16:54:08.45384",
         "last_update_date": "2022-11-13 16:54:08.45384",
         "deletion_date": null,
-        "status": ENABLED
+        "status": "ENABLED"
     }
 ]
 ```
@@ -469,7 +469,7 @@ Example response:
         "creation_date": "2022-11-13 16:54:08.45384",
         "last_update_date": "2022-11-13 16:54:08.45384",
         "deletion_date": null,
-        "status": ENABLED
+        "status": "ENABLED"
     }
 ]
 ```
