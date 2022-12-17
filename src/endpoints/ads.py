@@ -173,8 +173,6 @@ def update_ad():
     enum_values = (("status", ("ENABLED", "DISABLED")),)
     parameters = (
         "ad_id",
-        "total_budget",
-        "daily_budget",
         "status",
     )
     immutable = ("ad_id",)
