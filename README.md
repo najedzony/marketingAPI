@@ -133,13 +133,13 @@ Example response:
 [
     {
         "campaign_id": 12344321,
-        "campaign_name": my_campaign_1,
+        "campaign_name": "my_campaign_1",
         "total_budget": 10000,
         "daily_budget": 150,
-        "creation_date": 2022-11-13 16:54:08.45384
-        "last_update_date": 2022-11-13 16:54:08.45384,
+        "creation_date": "2022-11-13 16:54:08.45384",
+        "last_update_date": "2022-11-13 16:54:08.45384",
         "deletion_date": null,
-        "status": ENABLED
+        "status": "ENABLED"
     }
 ]
 ```
@@ -300,11 +300,11 @@ Example response:
     {
         "campaign_id": 12344321,
         "adgroup_id": 234432,
-        "adgroup_name": my_adgroup_1,
+        "adgroup_name": "my_adgroup_1",
         "total_budget": 10000,
         "daily_budget": 150,
-        "creation_date": 2022-11-13 16:54:08.45384
-        "last_update_date": 2022-11-13 16:54:08.45384,
+        "creation_date": "2022-11-13 16:54:08.45384",
+        "last_update_date": "2022-11-13 16:54:08.45384",
         "deletion_date": null,
         "status": ENABLED
     }
@@ -465,9 +465,9 @@ Example response:
         "campaign_id": 12344321,
         "adgroup_id": 234432,
         "ad_id": 3443,
-        "ad_name": my_ad_1,
-        "creation_date": 2022-11-13 16:54:08.45384
-        "last_update_date": 2022-11-13 16:54:08.45384,
+        "ad_name": "my_ad_1",
+        "creation_date": "2022-11-13 16:54:08.45384",
+        "last_update_date": "2022-11-13 16:54:08.45384",
         "deletion_date": null,
         "status": ENABLED
     }
