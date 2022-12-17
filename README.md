@@ -34,8 +34,8 @@ Schema:
 Example:
 ```json
 {
-    "username": username1,
-    "password": password123
+    "username": "username1",
+    "password": "password123"
 }
 ```
 
@@ -78,20 +78,20 @@ daily_budget -> integer
 Example:
 ```json
 {
-    "campaign_name": my_campaign_1,
+    "campaign_name": "my_campaign_1",
     "total_budget": 10000,
     "daily_budget": 150,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Campaign created,
+    "message": "Campaign created",
     "campaign": {
         "campaign_id": 12344321,
-        "campaign_name": my_campaign_1
+        "campaign_name": "my_campaign_1"
     }
 }
 ```
@@ -114,13 +114,13 @@ Example response:
 ```json
 {
     "campaign_id": 12344321,
-    "campaign_name": my_campaign_1,
+    "campaign_name": "my_campaign_1",
     "total_budget": 10000,
     "daily_budget": 150,
-    "creation_date": 2022-11-13 16:54:08.45384
-    "last_update_date": 2022-11-13 16:54:08.45384,
+    "creation_date": "2022-11-13 16:54:08.45384",
+    "last_update_date": "2022-11-13 16:54:08.45384",
     "deletion_date": null,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
@@ -160,17 +160,17 @@ Example:
     "campaign_name": 12344321,
     "total_budget": 10000,
     "daily_budget": 150,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Campaign updated,
+    "message": "Campaign updated",
     "campaign": {
         "campaign_id": 12344321,
-        "campaign_name": my_campaign_1
+        "campaign_name": "my_campaign_1"
     }
 }
 ```
@@ -242,20 +242,20 @@ Example:
 ```json
 {
     "campaign_id": 12344321,
-    "adgroup_name": my_adgroup_1,
+    "adgroup_name": "my_adgroup_1",
     "total_budget": 10000,
     "daily_budget": 150,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Adgroup created,
+    "message": "Adgroup created",
     "campaign": {
         "adgroup_id": 234432,
-        "adgroup_name": my_adgroup_1,
+        "adgroup_name": "my_adgroup_1",
         "campaign_id": 12344321
     }
 }
@@ -280,13 +280,13 @@ Example response:
 {
     "campaign_id": 12344321,
     "adgroup_id": 234432,
-    "adgroup_name": my_adgroup_1,
+    "adgroup_name": "my_adgroup_1",
     "total_budget": 10000,
     "daily_budget": 150,
-    "creation_date": 2022-11-13 16:54:08.45384
-    "last_update_date": 2022-11-13 16:54:08.45384,
+    "creation_date": "2022-11-13 16:54:08.45384",
+    "last_update_date": "2022-11-13 16:54:08.45384",
     "deletion_date": null,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
@@ -327,17 +327,17 @@ Example:
     "adgroup_id": 234432,
     "total_budget": 10000,
     "daily_budget": 150,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Adgroup updated,
+    "message": "Adgroup updated",
     "adgroup": {
         "adgroup_id": 234432,
-        "adgroup_name": my_adgroup_1
+        "adgroup_name": "my_adgroup_1"
     }
 }
 ```
@@ -408,18 +408,18 @@ Example:
 ```json
 {
     "adgroup_id": 234432,
-    "ad_name": my_ad_1,
-    "status": ENABLED
+    "ad_name": "my_ad_1",
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Ad created,
+    "message": "Ad created",
     "campaign": {
         "ad_id": 3443,
-        "ad_name": my_ad_1,
+        "ad_name": "my_ad_1",
         "adgroup_id": 234432,
         "campaign_id": 12344321
     }
@@ -446,11 +446,11 @@ Example response:
     "campaign_id": 12344321,
     "adgroup_id": 234432,
     "ad_id": 3443,
-    "ad_name": my_ad_1,
-    "creation_date": 2022-11-13 16:54:08.45384
-    "last_update_date": 2022-11-13 16:54:08.45384,
+    "ad_name": "my_ad_1",
+    "creation_date": "2022-11-13 16:54:08.45384",
+    "last_update_date": "2022-11-13 16:54:08.45384",
     "deletion_date": null,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
@@ -486,17 +486,17 @@ Example:
 ```json
 {
     "ad_id": 3443,
-    "status": ENABLED
+    "status": "ENABLED"
 }
 ```
 
 Example response:
 ```json
 {
-    "message": Ad updated,
+    "message": "Ad updated",
     "ad": {
         "ad_id": 3443,
-        "ad_name": my_ad_1
+        "ad_name": "my_ad_1"
     }
 }
 ```
