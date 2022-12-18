@@ -79,7 +79,7 @@ def get_campaign():
         validator.validate_types(schema, request.json)
         validator.validate_names(params, request.json)
     except Exception as error:
-        return jsonify({"error": error}), http.HTTPStatus.BAD_REQUEST
+        return jsonify({"error": error.args}), http.HTTPStatus.BAD_REQUEST
     advertiser_id = helper.get_user(get_jwt_identity()).advertiser_id
 
     if not helper.check_user_permissions(advertiser_id, READ_ACCESS, "campaigns"):
