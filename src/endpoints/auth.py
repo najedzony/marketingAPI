@@ -63,7 +63,7 @@ def set_permissions(request, user):
         )
     permissions = Permissions(
         advertiser_id=user.advertiser_id,
-        campaings=campaigns_permissions,
+        campaigns=campaigns_permissions,
         adgroups=adgroups_permissions,
         ads=ads_permissions,
         reports=reports_permissions,
@@ -71,18 +71,17 @@ def set_permissions(request, user):
     db.session.add(permissions)
 
 
+@jwt_required()
 @auth.post("/register")
 def register():
     username = request.json["username"]
     password = request.json["password"]
 
-    if len(password) < 10:
-        return (
-            jsonify(
-                {"error": "Password is too short"},
-            ),
-            http.HTTPStatus.BAD_REQUEST,
-        )
+    advertiser_id = helper.get_user(get_jwt_identity()).advertiser_id
+
+    if not helper.check_admin_permissions(advertiser_id):
+        return jsonify({"message": "Access denied"}), http.HTTPStatus.UNAUTHORIZED
+
     hashed_password = generate_password_hash(password)
     advertiser_id = db.session.query(func.max(Users.advertiser_id)).first()[0] + 1
     user = Users(
