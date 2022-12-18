@@ -12,6 +12,20 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
       - ../src/database/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  flask-app:
+    container_name: flask-app
+    environment:
+      - FLASK_APP=src.app
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@db:5432
+    build:
+      context: ..
+      dockerfile: ./dockered/Dockerfile
+    ports:
+      - '5000:5000'
+    restart:
+      always
+    depends_on:
+      - db
 volumes:
   db:
     driver: local
