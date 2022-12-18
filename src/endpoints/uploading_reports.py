@@ -53,7 +53,7 @@ def upload_reports():
         return jsonify({"message": "Access denied"}), http.HTTPStatus.UNAUTHORIZED
 
     ad = Ads.query.filter_by(
-        advertiser_id=advertiser_id, ad_id=request.json["ad_id"]
+        ad_id=request.json["ad_id"]
     ).first()
     if not ad or ad.status == "DELETED":
         return (
@@ -61,7 +61,7 @@ def upload_reports():
             http.HTTPStatus.BAD_REQUEST,
         )
     ad_report = AdsReports.query.filter(
-        AdsReports.advertiser_id == advertiser_id,
+        AdsReports.advertiser_id == ad.advertiser_id,
         AdsReports.ad_id == ad.ad_id,
         AdsReports.report_date == request.json["report_date"],
     ).first()
@@ -72,7 +72,7 @@ def upload_reports():
                 setattr(ad_report, parameter, current_value + request.json[parameter])
     else:
         new_report = AdsReports(
-            advertiser_id=advertiser_id,
+            advertiser_id=ad.advertiser_id,
             campaign_id=ad.campaign_id,
             adgroup_id=ad.adgroup_id,
             ad_id=ad.ad_id,
@@ -88,14 +88,14 @@ def upload_reports():
             cost_per_install=request.json["spend"] / request.json["installs"],
         )
         db.session.add(new_report)
-    add_corresponding_advertiser_report(request.json)
-    add_corresponding_campaign_report(request.json, ad.campaign_id)
-    add_corresponding_adgroup_report(request.json, ad.campaign_id, ad.adgroup_id)
+    add_corresponding_advertiser_report(request.json, ad.advertiser_id)
+    add_corresponding_campaign_report(request.json, ad.campaign_id, ad.advertiser_id)
+    add_corresponding_adgroup_report(request.json, ad.campaign_id, ad.adgroup_id, ad.advertiser_id)
     db.session.commit()
     return jsonify({"message": "Report added"}), http.HTTPStatus.CREATED
 
 
-def add_corresponding_campaign_report(request, campaign_id):
+def add_corresponding_campaign_report(request, campaign_id, advertiser_id):
     parameters_to_update = (
         "impressions",
         "clicks",
@@ -104,7 +104,6 @@ def add_corresponding_campaign_report(request, campaign_id):
         "installs",
     )
 
-    advertiser_id = helper.get_user(get_jwt_identity()).advertiser_id
     corresponding_campaign_report = CampaignsReports.query.filter(
         CampaignsReports.advertiser_id == advertiser_id,
         CampaignsReports.campaign_id == campaign_id,
@@ -153,7 +152,7 @@ def add_corresponding_campaign_report(request, campaign_id):
         db.session.add(new_report)
 
 
-def add_corresponding_adgroup_report(request, campaign_id, adgroup_id):
+def add_corresponding_adgroup_report(request, campaign_id, adgroup_id, advertiser_id):
     parameters_to_update = (
         "impressions",
         "clicks",
@@ -162,7 +161,6 @@ def add_corresponding_adgroup_report(request, campaign_id, adgroup_id):
         "installs",
     )
 
-    advertiser_id = helper.get_user(get_jwt_identity()).advertiser_id
     corresponding_adgroup_report = AdgroupsReports.query.filter(
         AdgroupsReports.advertiser_id == advertiser_id,
         AdgroupsReports.adgroup_id == adgroup_id,
@@ -209,7 +207,7 @@ def add_corresponding_adgroup_report(request, campaign_id, adgroup_id):
         db.session.add(new_report)
 
 
-def add_corresponding_advertiser_report(request):
+def add_corresponding_advertiser_report(request, advertiser_id):
     parameters_to_update = (
         "impressions",
         "clicks",
@@ -217,7 +215,6 @@ def add_corresponding_advertiser_report(request):
         "downloads",
         "installs",
     )
-    advertiser_id = helper.get_user(get_jwt_identity()).advertiser_id
     corresponding_advertiser_report = AdvertiserReports.query.filter(
         AdgroupsReports.advertiser_id == advertiser_id,
         AdgroupsReports.report_date == request["report_date"],

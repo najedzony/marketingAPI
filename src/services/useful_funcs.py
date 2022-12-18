@@ -61,10 +61,10 @@ class EndpointManagingHelper:
         permissions = Permissions.query.filter_by(advertiser_id=advertiser_id).first()
         if not permissions:
             return False
-        return self.check_permissions(permissions[section], permission)
+        return self.check_permissions(getattr(permissions, section), permission)
 
     def check_admin_permissions(self, advertiser_id):
         permissions = Permissions.query.filter_by(advertiser_id=advertiser_id).first()
         if not permissions:
             return False
-        return permissions["admin"] == 1
+        return permissions.admin == 1
