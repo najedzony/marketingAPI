@@ -116,6 +116,7 @@ def campaigns_reports():
                     func.sum(CampaignsReports.installs).label("installs"),
                 )
                 .group_by(CampaignsReports.campaign_id, CampaignsReports.campaign_name)
+                .filter(CampaignsReports.report_date >= request.json["date_from"], CampaignsReports.report_date <= request.json["date_to"])
                 .all()
             )
             return (
@@ -239,6 +240,8 @@ def adgroups_reports():
                     func.sum(AdgroupsReports.installs).label("installs"),
                 )
                 .group_by(AdgroupsReports.adgroup_id, AdgroupsReports.adgroup_name)
+                .filter(AdgroupsReports.report_date >= request.json["date_from"],
+                        AdgroupsReports.report_date <= request.json["date_to"])
                 .all()
             )
             return (
@@ -363,6 +366,8 @@ def ads_reports():
                     func.sum(AdsReports.installs).label("installs"),
                 )
                 .group_by(AdsReports.ad_id, AdsReports.ad_name)
+                .filter(AdsReports.report_date >= request.json["date_from"],
+                        AdsReports.report_date <= request.json["date_to"])
                 .all()
             )
             return (
